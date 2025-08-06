@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faRobot, faUser, faLaptopCode, faFlask } from '@fortawesome/free-solid-svg-icons';
+import { faRobot, faUser, faLaptopCode, faFlask, faPaw, faComments } from '@fortawesome/free-solid-svg-icons'; // Added faPaw and faComments
 import Chatbot from './Chatbot'; // Import the Chatbot component
+import aashimaFinalImage from './assets/aashimaFinal.png'; // Import the new Aashima image
 
-// Shadcn UI Card components (simulated for demonstration)
+// Shadcn UI Card components (simulated for demonstration) - These are kept for consistency
 const Card = ({ children, className = '' }) => (
   <div className={`rounded-lg border border-zinc-700 bg-black text-gray-100 shadow-xl ${className}`}>
     {children}
@@ -46,7 +47,7 @@ const MainScreen = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center sm:items-start sm:flex-row font-sans text-gray-100"
+    <div className="min-h-screen flex flex-col font-sans text-gray-100 relative overflow-hidden"
       style={{
         background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
       }}>
@@ -191,68 +192,276 @@ const MainScreen = () => {
             background-color: #3f3f46;
             margin-left: 1.25rem;
           }
+
+          /* Styles for the new MainScreen UI */
+          .main-content-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            padding: 2rem;
+            text-align: center;
+          }
+
+          @media (min-width: 768px) { /* Medium screens and up */
+            .main-content-area {
+              flex-direction: row;
+              text-align: left;
+              justify-content: center;
+              gap: 4rem; /* Space between image and text */
+            }
+          }
+
+          .aashima-image {
+            width: 250px; /* Default size for image */
+            height: auto;
+            border-radius: 0.75rem; /* Rounded corners for the image */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
+          }
+
+          @media (min-width: 768px) {
+            .aashima-image {
+              width: 350px; /* Larger image on desktop */
+            }
+          }
+
+          .aashima-text-content {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center text content on small screens */
+            text-align: center; /* Center text within this block */
+          }
+
+          @media (min-width: 768px) {
+            .aashima-text-content {
+              margin-top: 0;
+              align-items: flex-start; /* Align text to start on large screens */
+              text-align: left; /* Align text to left on large screens */
+            }
+          }
+
+          .aashima-title {
+            font-size: 2.5rem; /* Slightly smaller default for mobile */
+            line-height: 1.2;
+            font-weight: bold;
+            color: #ffffff;
+          }
+
+          @media (min-width: 480px) { /* Small mobile screens and up */
+            .aashima-title {
+              font-size: 3rem;
+            }
+          }
+
+          @media (min-width: 768px) {
+            .aashima-title {
+              font-size: 4.5rem; /* Larger on desktop */
+            }
+          }
+
+          .aashima-highlight {
+            color: #94a3b8; /* Grayish color for "Aashima" */
+          }
+
+          .aashima-subtitle {
+            font-size: 1.5rem; /* Default for mobile */
+            color: #cbd5e1; /* Lighter gray for subtitle */
+            margin-top: 1rem;
+          }
+
+          @media (min-width: 768px) {
+            .aashima-subtitle {
+              font-size: 2rem; /* Larger on desktop */
+            }
+          }
+
+          .aashima-description {
+            font-size: 1.1rem; /* Slightly smaller than subtitle */
+            color: #a0aec0; /* Even lighter gray */
+            margin-top: 1.5rem; /* More space after subtitle */
+            max-width: 600px; /* Limit width for readability */
+            line-height: 1.6;
+          }
+
+          @media (min-width: 768px) {
+            .aashima-description {
+              font-size: 1.25rem;
+            }
+          }
+
+          .google-login-button {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background-color: #4285f4; /* Google blue */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10; /* Ensure it's above other content */
+          }
+
+          .google-login-button:hover {
+            background-color: #357ae8;
+          }
+
+          .action-buttons-container {
+            display: flex;
+            flex-direction: column; /* Stack on mobile */
+            gap: 1rem; /* Space between buttons */
+            margin-top: 2.5rem; /* More space after description */
+            width: 100%;
+            max-width: 400px; /* Limit width of buttons container */
+          }
+
+          @media (min-width: 640px) { /* Small screens and up */
+            .action-buttons-container {
+              flex-direction: row; /* Side-by-side on larger screens */
+              max-width: 500px; /* Adjust max width for side-by-side */
+            }
+          }
+
+          .action-button {
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem; /* More rounded */
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem; /* Space between icon and text */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 1.1rem;
+          }
+
+          .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+          }
+
+          .button-donate {
+            background: linear-gradient(45deg, #4CAF50, #8BC34A); /* Green gradient */
+            color: white;
+          }
+
+          .button-donate:hover {
+            background: linear-gradient(45deg, #8BC34A, #4CAF50);
+          }
+
+          .button-chat {
+            background-color: #1e62d0; /* Primary blue */
+            color: white;
+          }
+
+          .button-chat:hover {
+            background-color: #154a9e;
+          }
         `}
       </style>
       
-      <div className="flex-grow flex items-center justify-center p-4 sm:p-8">
-        <div className="w-full max-w-4xl flex flex-col space-y-8 sm:space-y-12">
-            <div className="text-center sm:text-left">
-                <h1 className="text-4xl sm:text-6xl font-bold text-white tracking-tight leading-tight">Aashima</h1>
-                <p className="mt-4 text-xl sm:text-2xl text-gray-400">
-                    Clear all your tech career doubts by chatting with your personal AI senior.
-                </p>
-            </div>
-            
-            {userProfile.userName && (
-                <Card className="w-full p-6">
-                    <CardHeader className="p-0 border-b border-zinc-700 pb-4 mb-4">
-                        <CardTitle className="text-2xl flex items-center space-x-2"><FontAwesomeIcon icon={faUser} className="text-blue-500" /><span>Your Profile</span></CardTitle>
-                        <CardDescription className="text-base text-gray-300 mt-1">Here's a quick overview of your career path.</CardDescription>
-                    </CardHeader>
-                    <CardContent className="p-0">
-                        <div className="space-y-4">
-                            <div className="flex items-center text-lg space-x-2">
-                                <FontAwesomeIcon icon={faLaptopCode} className="text-gray-500" />
-                                <span className="font-semibold text-gray-300">{userProfile.userStatus === 'college' ? userProfile.collegeYear : `${userProfile.yoe} years exp.`}</span>
-                                <span className="text-gray-400"> • </span>
-                                <span className="font-semibold text-gray-300">{userProfile.selectedDomain}</span>
-                            </div>
+      {/* Google Login Button */}
+      <button className="google-login-button">
+        Google LOGIN
+      </button>
 
-                            <div className="space-y-2">
-                                <h4 className="font-semibold text-gray-300 flex items-center space-x-2"><FontAwesomeIcon icon={faFlask} className="text-gray-500" /><span>Your Skills</span></h4>
-                                {userProfile.skills.length > 0 ? (
-                                    userProfile.skills.map((skill, index) => (
-                                        <div key={index} className="flex items-center space-x-2">
-                                            <span className="w-32 text-gray-400">{skill.name}:</span>
-                                            <div className="flex-grow h-3 bg-zinc-800 rounded-full">
-                                                <div
-                                                    className="h-full bg-blue-500 rounded-full transition-all duration-500 ease-in-out"
-                                                    style={{ width: `${skill.rating * 10}%` }}
-                                                ></div>
-                                            </div>
-                                            <span className="text-gray-300">{skill.rating}/10</span>
-                                        </div>
-                                    ))
-                                ) : (
-                                    <p className="text-gray-500">Your skills will appear here once you've entered them in the chat.</p>
-                                )}
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
-            )}
+      <div className="main-content-area">
+        {/* Aashima Image */}
+        <div className="flex-shrink-0">
+          <img 
+            src={aashimaFinalImage} 
+            alt="Aashima" 
+            className="aashima-image" 
+          />
+        </div>
+
+        {/* Text Content */}
+        <div className="aashima-text-content">
+          <h1 className="aashima-title">
+            Hey, I am <span className="aashima-highlight">Aashima</span><br />
+            your Ai College Senior
+          </h1>
+          <p className="aashima-subtitle">
+            I work in Tech and feed stray dogs
+          </p>
+          <p className="aashima-description">
+            Been through the chaos of college life—now here to fix yours, clear your career doubts, and drop the roadmaps you actually need.
+          </p>
+
+          {/* Action Buttons */}
+          <div className="action-buttons-container">
+            <button 
+              className="action-button button-donate"
+              onClick={() => alert('Redirecting to donation page... (Not implemented yet)')} // Placeholder for donation
+            >
+              <FontAwesomeIcon icon={faPaw} />
+              Donate for Stray Dogs
+            </button>
+            <button 
+              className="action-button button-chat"
+              onClick={() => setIsChatOpen(true)}
+            >
+              <FontAwesomeIcon icon={faComments} />
+              Chat with Me
+            </button>
+          </div>
         </div>
       </div>
 
-      {!isChatOpen && (
+      {/* User Profile Card (Conditional Rendering) */}
+      {userProfile.userName && (
+          <Card className="w-full max-w-4xl p-6 mx-auto mb-8 sm:mb-12">
+              <CardHeader className="p-0 border-b border-zinc-700 pb-4 mb-4">
+                  <CardTitle className="text-2xl flex items-center space-x-2"><FontAwesomeIcon icon={faUser} className="text-blue-500" /><span>Your Profile</span></CardTitle>
+                  <CardDescription className="text-base text-gray-300 mt-1">Here's a quick overview of your career path.</CardDescription>
+              </CardHeader>
+              <CardContent className="p-0">
+                  <div className="space-y-4">
+                      <div className="flex items-center text-lg space-x-2">
+                          <FontAwesomeIcon icon={faLaptopCode} className="text-gray-500" />
+                          <span className="font-semibold text-gray-300">{userProfile.userStatus === 'college' ? userProfile.collegeYear : `${userProfile.yoe} years exp.`}</span>
+                          <span className="text-gray-400"> • </span>
+                          <span className="font-semibold text-gray-300">{userProfile.selectedDomain}</span>
+                      </div>
+
+                      <div className="space-y-2">
+                          <h4 className="font-semibold text-gray-300 flex items-center space-x-2"><FontAwesomeIcon icon={faFlask} className="text-gray-500" /><span>Your Skills</span></h4>
+                          {userProfile.skills.length > 0 ? (
+                              userProfile.skills.map((skill, index) => (
+                                  <div key={index} className="flex items-center space-x-2">
+                                      <span className="w-32 text-gray-400">{skill.name}:</span>
+                                      <div className="flex-grow h-3 bg-zinc-800 rounded-full">
+                                          <div
+                                              className="h-full bg-blue-500 rounded-full transition-all duration-500 ease-in-out"
+                                              style={{ width: `${skill.rating * 10}%` }}
+                                          ></div>
+                                      </div>
+                                      <span className="text-gray-300">{skill.rating}/10</span>
+                                  </div>
+                              ))
+                          ) : (
+                              <p className="text-gray-500">Your skills will appear here once you've entered them in the chat.</p>
+                          )}
+                      </div>
+                  </div>
+              </CardContent>
+          </Card>
+      )}
+
+      {/* Chatbot Toggle Button (Removed as 'Chat with Me' button now handles this) */}
+      {/* {!isChatOpen && (
         <button
           className="fixed bottom-8 right-8 z-50 p-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition-all duration-300 transform hover:scale-110"
           onClick={() => setIsChatOpen(true)}
         >
           <FontAwesomeIcon icon={faRobot} size="2x" />
         </button>
-      )}
+      )} */}
 
+      {/* Chatbot Component */}
       <Chatbot 
         isOpen={isChatOpen} 
         onClose={() => setIsChatOpen(false)}
@@ -261,6 +470,7 @@ const MainScreen = () => {
         onStartOver={handleStartOver}
       />
 
+      {/* Footer */}
       <footer className="w-full text-center py-4 px-2 mt-auto text-gray-400 text-sm"
         style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
         <p className="mb-2">Built by Manas Jain</p>
