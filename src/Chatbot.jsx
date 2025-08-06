@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRobot, faTimes, faUser, faLaptopCode, faFlask, faChartLine, faEye } from '@fortawesome/free-solid-svg-icons';
-import RoadmapCanvas from './RoadmapCanvas'; // Correct import path
-import aashimaProfile from './assets/aashimaAi.png'; // Import Aashima's profile picture
+import RoadmapCanvas from './RoadmapCanvas';
+import aashimaProfile from './assets/aashimaAi.png';
 
 // --- Shadcn UI Card components (simulated for demonstration) ---
 const Card = ({ children, className = '' }) => (
@@ -584,10 +584,13 @@ const Chatbot = ({ isOpen, onClose, userProfile, onUpdateProfile, onStartOver })
                 {isLoading && (
                   <div className="chat-message-group chat-message-group-ai">
                     <img src={aashimaProfile} alt="Aashima" className="w-8 h-8 rounded-full object-cover self-start" />
-                    <div className="typing-indicator">
-                      <span></span>
-                      <span></span>
-                      <span></span>
+                    <div className="typing-indicator-container">
+                      <div className="typing-indicator">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                      <p className="text-sm text-gray-400 ml-2">Aashima is typing...</p>
                     </div>
                   </div>
                 )}
