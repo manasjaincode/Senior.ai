@@ -45,6 +45,20 @@ const MainScreen = () => {
     setUserProfile({});
     setIsChatOpen(false);
   };
+  
+  // A function to simulate a Google login
+  const handleGoogleLogin = () => {
+    // In a real app, you would handle the actual Google auth flow here.
+    // For this example, we'll just set some dummy user data to show the change.
+    alert('Google Login is being simulated...');
+    handleUpdateProfile({
+      userName: 'Dummy User',
+      userStatus: 'college',
+      collegeYear: '3rd Year',
+      selectedDomain: 'Software Development',
+      skills: []
+    });
+  };
 
   return (
     <div className="min-h-screen flex flex-col font-sans text-gray-100 relative overflow-hidden"
@@ -233,6 +247,14 @@ const MainScreen = () => {
             align-items: center; /* Center text content on small screens */
             text-align: center; /* Center text within this block */
           }
+          
+          /* Updated text alignment for mobile */
+          @media (max-width: 767px) {
+            .aashima-text-content {
+              align-items: flex-start; /* Align text to start on mobile screens */
+              text-align: left; /* Align text to left on mobile screens */
+            }
+          }
 
           @media (min-width: 768px) {
             .aashima-text-content {
@@ -243,15 +265,21 @@ const MainScreen = () => {
           }
 
           .aashima-title {
-            font-size: 2.5rem; /* Slightly smaller default for mobile */
+            font-size: 2.2rem; /* Adjusted for better mobile line break */
             line-height: 1.2;
             font-weight: bold;
             color: #ffffff;
           }
 
-          @media (min-width: 480px) { /* Small mobile screens and up */
+          @media (max-width: 479px) { /* Extra small mobile screens */
             .aashima-title {
-              font-size: 3rem;
+              font-size: 2rem; /* Even smaller for very narrow screens */
+            }
+          }
+
+          @media (min-width: 480px) and (max-width: 767px) { /* Small mobile screens and up to medium */
+            .aashima-title {
+              font-size: 2.8rem; /* Slightly larger for slightly wider mobiles */
             }
           }
 
@@ -289,24 +317,6 @@ const MainScreen = () => {
             .aashima-description {
               font-size: 1.25rem;
             }
-          }
-
-          .google-login-button {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background-color: #4285f4; /* Google blue */
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 10; /* Ensure it's above other content */
-          }
-
-          .google-login-button:hover {
-            background-color: #357ae8;
           }
 
           .action-buttons-container {
@@ -360,14 +370,18 @@ const MainScreen = () => {
           .button-chat:hover {
             background-color: #154a9e;
           }
+
+          .google-login-button {
+            background-color: #4285f4; /* Google blue */
+            color: white;
+          }
+          
+          .google-login-button:hover {
+            background-color: #357ae8;
+          }
         `}
       </style>
       
-      {/* Google Login Button */}
-      <button className="google-login-button">
-        Google LOGIN
-      </button>
-
       <div className="main-content-area">
         {/* Aashima Image */}
         <div className="flex-shrink-0">
@@ -384,29 +398,41 @@ const MainScreen = () => {
             Hey, I am <span className="aashima-highlight">Aashima</span><br />
             your Ai College Senior
           </h1>
-          <p className="aashima-subtitle">
-            I work in Tech and feed stray dogs
+          <p className="aashima-subtitle tracking-wider">
+            I work in Tech <br />
+            and feed stray dogs
           </p>
           <p className="aashima-description">
             Been through the chaos of college life—now here to fix yours, clear your career doubts, and drop the roadmaps you actually need.
           </p>
 
-          {/* Action Buttons */}
+          {/* Action Buttons with Conditional Rendering */}
           <div className="action-buttons-container">
-            <button 
-              className="action-button button-donate"
-              onClick={() => alert('Redirecting to donation page... (Not implemented yet)')} // Placeholder for donation
-            >
-              <FontAwesomeIcon icon={faPaw} />
-              Donate for Stray Dogs
-            </button>
-            <button 
-              className="action-button button-chat"
-              onClick={() => setIsChatOpen(true)}
-            >
-              <FontAwesomeIcon icon={faComments} />
-              Chat with Me
-            </button>
+            {userProfile.userName ? (
+              <>
+                <button 
+                  className="action-button button-donate"
+                  onClick={() => alert('Redirecting to donation page... (Not implemented yet)')} // Placeholder for donation
+                >
+                  <FontAwesomeIcon icon={faPaw} />
+                  Donate for Stray Dogs
+                </button>
+                <button 
+                  className="action-button button-chat"
+                  onClick={() => setIsChatOpen(true)}
+                >
+                  <FontAwesomeIcon icon={faComments} />
+                  Chat with Me
+                </button>
+              </>
+            ) : (
+              <button 
+                className="action-button google-login-button"
+                onClick={handleGoogleLogin}
+              >
+                Google LOGIN
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -451,16 +477,6 @@ const MainScreen = () => {
           </Card>
       )}
 
-      {/* Chatbot Toggle Button (Removed as 'Chat with Me' button now handles this) */}
-      {/* {!isChatOpen && (
-        <button
-          className="fixed bottom-8 right-8 z-50 p-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition-all duration-300 transform hover:scale-110"
-          onClick={() => setIsChatOpen(true)}
-        >
-          <FontAwesomeIcon icon={faRobot} size="2x" />
-        </button>
-      )} */}
-
       {/* Chatbot Component */}
       <Chatbot 
         isOpen={isChatOpen} 
@@ -500,3 +516,5 @@ const MainScreen = () => {
 };
 
 export default MainScreen;
++
+  
