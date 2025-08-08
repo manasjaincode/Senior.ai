@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faUser, faLaptopCode, faChartLine, faEye } from '@fortawesome/free-solid-svg-icons';
 import RoadmapCanvas from './RoadmapCanvas';
-import aashimaProfile from './assets/aashimaAi.png';
+import aashimaProfile from './assets/aashimafocuspic.jpg';
 
 // --- Shadcn UI Card components (simulated for demonstration) ---
 const Card = ({ children, className = '' }) => (

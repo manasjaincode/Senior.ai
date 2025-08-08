@@ -7,6 +7,8 @@ import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import Chatbot from './Chatbot';
 import aashimaFinalImage from './assets/aashimaFinal.png';
+// New Image Import
+import aashimadogfinalImage from './assets/aashimadogfinal.png';
 
 // --- Supabase Client Creation ---
 const supabaseUrl = "https://txrbvevvygpdekeqtxkk.supabase.co";
@@ -18,15 +20,31 @@ const MainScreen = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [session, setSession] = useState(null);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  
+  // New state to manage the image source
+  const [aashimaImage, setAashimaImage] = useState(aashimaFinalImage);
 
   // --- Supabase Authentication Logic ---
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      // Update the image based on session state
+      if (session) {
+        setAashimaImage(aashimadogfinalImage);
+        setShowLoginModal(false); // Close modal on successful login
+      } else {
+        setAashimaImage(aashimaFinalImage);
+      }
     });
 
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
+      // Initial check to set the correct image
+      if (session) {
+        setAashimaImage(aashimadogfinalImage);
+      } else {
+        setAashimaImage(aashimaFinalImage);
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -55,7 +73,6 @@ const MainScreen = () => {
       setShowLoginModal(true);
     }
   };
-
 
   return (
     <div className="min-h-screen flex flex-col font-sans text-gray-100 relative overflow-hidden"
@@ -424,7 +441,7 @@ const MainScreen = () => {
       <div className="main-content-area">
         <div className="flex-shrink-0">
           <img 
-            src={aashimaFinalImage} 
+            src={aashimaImage} 
             alt="Aashima" 
             className="aashima-image"
           />
@@ -436,11 +453,11 @@ const MainScreen = () => {
             your Ai College Senior
           </h1>
           <p className="aashima-subtitle tracking-wider">
-            I work in Tech <br />
+            I work in Tech 
             and feed stray dogs
           </p>
           <p className="aashima-description">
-            Been through the chaos of college life—now here to fix yours, clear your career doubts, and drop the roadmaps you actually need.
+            Been through the chaos of college life , Now here to fix yours, clear your career doubts, and drop the roadmaps you actually need.
           </p>
 
           <div className="action-buttons-container">
@@ -472,7 +489,7 @@ const MainScreen = () => {
               appearance={{ theme: ThemeSupa }}
               providers={['google']}
               theme="dark"
-              redirectTo={window.location.href}
+              redirectTo={window.location.origin}
             />
             <button
               onClick={() => setShowLoginModal(false)}
