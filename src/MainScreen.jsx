@@ -6,7 +6,7 @@ import { createClient } from '@supabase/supabase-js';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import Chatbot from './Chatbot';
-import aashimaFinalImage from './assets/aashimaFinal.png';
+import aashimaFinalImage from './assets/aashimafinal.png';
 // New Image Import
 import aashimadogfinalImage from './assets/aashimadogfinal.png';
 
