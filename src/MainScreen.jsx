@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faPaw, faComments } from '@fortawesome/free-solid-svg-icons';
+import { faPaw, faComments, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { createClient } from '@supabase/supabase-js';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import Chatbot from './Chatbot';
 import aashimaFinalImage from './assets/aashimafinal.png';
-// New Image Import
 import aashimadogfinalImage from './assets/aashimadogfinal.png';
+import dogDonationImage from './assets/dogdonation.png'; // New import for the dog image
+import upiQrImage from './assets/qr.jpg'; // New import for the UPI QR code image
+
 
 // --- Supabase Client Creation ---
 const supabaseUrl = "https://txrbvevvygpdekeqtxkk.supabase.co";
@@ -16,22 +18,93 @@ const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+// --- Donation Modal Component ---
+const modalStyles = {
+  backdrop: 'fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 p-4',
+  // Updated modal styles for better responsiveness and smaller size
+  modal: 'bg-gray-900 text-white p-6 md:p-8 rounded-2xl shadow-2xl max-w-sm w-full transform transition-all duration-300',
+  header: 'text-2xl md:text-3xl font-bold mb-4 text-center text-violet-500',
+  subHeader: 'text-sm md:text-md text-gray-400 mb-6 text-center',
+  closeBtn: 'absolute top-4 right-4 text-gray-500 hover:text-white transition-colors duration-200',
+  // customInput is no longer needed, but kept for reference if needed later
+  customInput: 'w-full bg-gray-800 text-white text-lg rounded-full p-3 pl-5 font-bold tracking-wide transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-violet-500',
+  orText: 'text-gray-500 font-bold text-center my-6',
+
+  qrImage: 'w-60 h-60 rounded-lg', // Reduced QR image size
+  payButton: 'w-full bg-violet-600 text-white font-bold py-3 px-6 rounded-full mt-4 flex items-center justify-center gap-2 hover:bg-violet-700 transition-colors duration-200',
+};
+
+// Updated UPI ID from user's request
+const upiId = 'manaspersonal3377@okhdfcbank'; 
+
+const DonationModal = ({ isOpen, onClose }) => {
+  // Removed state and useEffect for amount and upiLink as it's no longer needed
+  // Removed fixed amount, UPI link will now open with no pre-filled amount
+  const upiLink = `upi://pay?pa=${upiId}&pn=Manas Jain`;
+
+  if (!isOpen) return null;
+  
+  return (
+    <div className={modalStyles.backdrop}>
+      <div className={modalStyles.modal}>
+        <button onClick={onClose} className={modalStyles.closeBtn}>
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <p className="text-gray-400 font-bold text-center text-sm md:text-base">Millions of stray dogs in India face starvation. 💔</p>
+        
+        {/* New UI layout, now more compact and vertical */}
+        <div className="flex flex-col items-center mt-6 gap-6">
+          {/* Dog Image - Reduced size */}
+          <div className="flex-shrink-0">
+            <img src={dogDonationImage} alt="Stray Dog" className="w-32 h-32 object-cover rounded-xl shadow-lg" />
+          </div>
+
+          {/* QR and Button Section */}
+          <div className="flex-grow flex flex-col items-center w-full">
+            <h3 className="font-bold text-xl mb-4">Scan to Donate</h3>
+            <div className={modalStyles.qrContainer}>
+              <img src={upiQrImage} alt="UPI QR Code" className={modalStyles.qrImage} />
+            </div>
+            
+            <div className={modalStyles.orText}>OR</div>
+
+            {/* Pay Now Button - always visible with no fixed amount */}
+            <a
+              href={upiLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={modalStyles.payButton}
+            >
+              <FontAwesomeIcon icon={faExternalLinkAlt} />
+              Pay Now
+            </a>
+            {/* The UPI ID display text has been removed as requested */}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
 const MainScreen = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [session, setSession] = useState(null);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showDonationModal, setShowDonationModal] = useState(false);
   
-  // New state to manage the image source
   const [aashimaImage, setAashimaImage] = useState(aashimaFinalImage);
 
   // --- Supabase Authentication Logic ---
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      // Update the image based on session state
       if (session) {
         setAashimaImage(aashimadogfinalImage);
-        setShowLoginModal(false); // Close modal on successful login
+        setShowLoginModal(false);
       } else {
         setAashimaImage(aashimaFinalImage);
       }
@@ -39,7 +112,6 @@ const MainScreen = () => {
 
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
-      // Initial check to set the correct image
       if (session) {
         setAashimaImage(aashimadogfinalImage);
       } else {
@@ -59,17 +131,14 @@ const MainScreen = () => {
     setIsChatOpen(false);
   };
   
-  // --- New Logic for handling button clicks ---
   const handleProtectedAction = (action) => {
     if (session) {
-      // User is authenticated, proceed with the action
       if (action === 'chat') {
         setIsChatOpen(true);
       } else if (action === 'donate') {
-        window.open('https://www.instagram.com/manasjaiinn', '_blank');
+        setShowDonationModal(true);
       }
     } else {
-      // User is not authenticated, show the login modal
       setShowLoginModal(true);
     }
   };
@@ -500,6 +569,11 @@ const MainScreen = () => {
             </button>
           </div>
         </div>
+      )}
+
+      {/* Donation Modal */}
+      {showDonationModal && (
+        <DonationModal isOpen={showDonationModal} onClose={() => setShowDonationModal(false)} />
       )}
 
       <Chatbot 
