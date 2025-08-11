@@ -4,16 +4,22 @@ import qrImage from "./assets/qr.jpg";
 
 export default function DonationModal({ onClose, upiId, qrImageUrl }) {
   const [showFallbackMessage, setShowFallbackMessage] = useState(false);
-  const amount = ""; // Leave empty for the user to choose the amount
+  const [showAmountError, setShowAmountError] = useState(false);
+  const [amount, setAmount] = useState("");
 
   // Function to handle the UPI payment link click
   const handleUpiPay = (appLink) => {
+    // Check if a valid amount has been entered
+    if (!amount || parseFloat(amount) <= 0) {
+      setShowAmountError(true);
+      return;
+    }
+    setShowAmountError(false);
+    
     // Attempt to open the UPI app directly
     window.open(appLink, '_blank');
 
     // If the app doesn't open after 1 second, show a fallback message.
-    // The '_blank' target opens a new tab, which is then handled by the OS.
-    // We can't reliably detect success, so a timeout is the best we can do.
     const timeout = setTimeout(() => {
       setShowFallbackMessage(true);
     }, 1000);
@@ -27,7 +33,7 @@ export default function DonationModal({ onClose, upiId, qrImageUrl }) {
     document.addEventListener('visibilitychange', handleVisibilityChange, { once: true });
   };
 
-  // UPI links for specific apps. Using these can improve reliability.
+  // UPI links for specific apps. The amount is dynamically added.
   const googlePayLink = `upi://pay?pa=${upiId}&pn=Donation&am=${amount}&cu=INR&apn=com.google.android.apps.nbu.paisa.user`;
   const phonePeLink = `phonepe://pay?pa=${upiId}&pn=Donation&am=${amount}&cu=INR&apn=com.phonepe.app`;
   const paytmLink = `paytmmp://pay?pa=${upiId}&pn=Donation&am=${amount}&cu=INR&apn=net.one97.paytm`;
@@ -75,8 +81,21 @@ export default function DonationModal({ onClose, upiId, qrImageUrl }) {
               className="w-40 h-40 object-cover"
             />
 
-            {/* Buttons */}
+            {/* Payment Section */}
             <div className="flex flex-col gap-3 mt-4 lg:mt-0 w-full max-w-xs">
+              <input
+                type="number"
+                placeholder="Enter amount"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                className="w-full p-2 rounded-lg text-black bg-white"
+                min="1"
+              />
+              {showAmountError && (
+                <div className="text-red-400 text-sm mt-1">
+                  कृपया दान करने के लिए एक वैध राशि दर्ज करें।
+                </div>
+              )}
               <button
                 onClick={() => handleUpiPay(googlePayLink)}
                 className="bg-[#b8b3ff] text-black font-semibold py-2 rounded-xl text-center hover:opacity-90"
@@ -107,7 +126,7 @@ export default function DonationModal({ onClose, upiId, qrImageUrl }) {
           {/* Fallback Message */}
           {showFallbackMessage && (
             <div className="mt-4 p-3 bg-red-500 rounded-lg text-white text-center">
-              The app did not open. Please scan the QR code directly.
+              ऐप नहीं खुला। कृपया सीधे QR कोड स्कैन करें।
             </div>
           )}
         </div>
