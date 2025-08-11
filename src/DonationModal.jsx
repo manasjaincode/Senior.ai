@@ -1,13 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import dogImage from "./assets/dogdonation.png";
 import qrImage from "./assets/qr.jpg";
 
-export default function DonationModal({ onClose }) {
-  const upiId = "manaspersonal3377@okhdfcbank";
-  const amount = ""; // leave empty for user to choose
+export default function DonationModal({ onClose, upiId, qrImageUrl }) {
+  const [showFallbackMessage, setShowFallbackMessage] = useState(false);
+  const amount = ""; // Leave empty for the user to choose the amount
 
-  const googlePayLink = `upi://pay?pa=${upiId}&pn=Donation&am=${amount}&cu=INR`;
-  const phonePeLink = `phonepe://pay?pa=${upiId}&pn=Donation&am=${amount}&cu=INR`;
+  // Function to handle the UPI payment link click
+  const handleUpiPay = (appLink) => {
+    // Attempt to open the UPI app directly
+    window.open(appLink, '_blank');
+
+    // If the app doesn't open after 1 second, show a fallback message.
+    // The '_blank' target opens a new tab, which is then handled by the OS.
+    // We can't reliably detect success, so a timeout is the best we can do.
+    const timeout = setTimeout(() => {
+      setShowFallbackMessage(true);
+    }, 1000);
+
+    // Clear the timeout if the user switches tabs, assuming the app opened.
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        clearTimeout(timeout);
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange, { once: true });
+  };
+
+  // UPI links for specific apps. Using these can improve reliability.
+  const googlePayLink = `upi://pay?pa=${upiId}&pn=Donation&am=${amount}&cu=INR&apn=com.google.android.apps.nbu.paisa.user`;
+  const phonePeLink = `phonepe://pay?pa=${upiId}&pn=Donation&am=${amount}&cu=INR&apn=com.phonepe.app`;
+  const paytmLink = `paytmmp://pay?pa=${upiId}&pn=Donation&am=${amount}&cu=INR&apn=net.one97.paytm`;
   const anyUpiLink = `upi://pay?pa=${upiId}&pn=Donation&am=${amount}&cu=INR`;
 
   return (
@@ -47,33 +70,46 @@ export default function DonationModal({ onClose }) {
             
             {/* QR Code */}
             <img
-              src={qrImage}
+              src={qrImageUrl}
               alt="Donation QR"
               className="w-40 h-40 object-cover"
             />
 
             {/* Buttons */}
             <div className="flex flex-col gap-3 mt-4 lg:mt-0 w-full max-w-xs">
-              <a
-                href={googlePayLink}
+              <button
+                onClick={() => handleUpiPay(googlePayLink)}
                 className="bg-[#b8b3ff] text-black font-semibold py-2 rounded-xl text-center hover:opacity-90"
               >
                 Google Pay
-              </a>
-              <a
-                href={phonePeLink}
+              </button>
+              <button
+                onClick={() => handleUpiPay(phonePeLink)}
                 className="bg-[#b8b3ff] text-black font-semibold py-2 rounded-xl text-center hover:opacity-90"
               >
                 PhonePe
-              </a>
-              <a
-                href={anyUpiLink}
+              </button>
+              <button
+                onClick={() => handleUpiPay(paytmLink)}
+                className="bg-[#b8b3ff] text-black font-semibold py-2 rounded-xl text-center hover:opacity-90"
+              >
+                Paytm
+              </button>
+              <button
+                onClick={() => handleUpiPay(anyUpiLink)}
                 className="bg-[#b8b3ff] text-black font-semibold py-2 rounded-xl text-center hover:opacity-90"
               >
                 Any other UPI
-              </a>
+              </button>
             </div>
           </div>
+          
+          {/* Fallback Message */}
+          {showFallbackMessage && (
+            <div className="mt-4 p-3 bg-red-500 rounded-lg text-white text-center">
+              The app did not open. Please scan the QR code directly.
+            </div>
+          )}
         </div>
       </div>
     </div>
