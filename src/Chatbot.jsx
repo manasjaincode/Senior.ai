@@ -127,7 +127,7 @@ const Chatbot = ({ isOpen, onClose, onStartOver }) => {
 
     const payload = { contents: [...conversationHistoryForGemini, { role: "user", parts: [{ text: fullPrompt }] }] };
     // यहाँ VITE_GEMINI_API_KEY का उपयोग करें
-    const apiKey =import.meta.env.VITE_GEMINI_API_KEY; 
+      const apiKey = "AIzaSyAW2KSZLa3x9Ocr8rmhRszvSFKPY9xUow0";
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
     try {
@@ -185,7 +185,8 @@ const Chatbot = ({ isOpen, onClose, onStartOver }) => {
 
     const payload = { contents: [{ role: "user", parts: [{ text: initialPrompt }] }] };
     // यहाँ भी VITE_GEMINI_API_KEY का उपयोग करें
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY; 
+    const apiKey = "AIzaSyAW2KSZLa3x9Ocr8rmhRszvSFKPY9xUow0";
+ 
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
     try {
