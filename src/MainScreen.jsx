@@ -86,43 +86,67 @@ const MainScreen = () => {
         )}
       </header>
       
-      {/* Main content area, now grows to fill the space */}
-      <div className="flex flex-col md:flex-row items-center justify-center flex-grow p-8 text-center md:text-left gap-8 overflow-y-auto">
+      <div className="flex flex-col md:flex-row items-center justify-center flex-grow p-4 md:p-8 text-center md:text-left gap-4 md:gap-8 overflow-y-auto">
         <div className="flex-shrink-0">
           <img
             src={aashimaImage}
             alt="Aashima"
-            className="w-64 md:w-96 rounded-2xl shadow-xl transition-all duration-300"
+            className="w-48 h-auto md:w-96 rounded-2xl shadow-xl transition-all duration-300"
           />
         </div>
 
-        <div className="flex flex-col items-center md:items-start text-white max-w-2xl mt-8 md:mt-0">
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+        <div className="flex flex-col items-center md:items-start text-white max-w-2xl mt-4 md:mt-0">
+          <h1 className="text-3xl md:text-6xl font-bold leading-tight">
             Hey, I am <span className="text-blue-400">Aashima</span><br />
             your Ai College Senior
           </h1>
-          <p className="text-xl md:text-2xl mt-4 text-gray-300">
+          <p className="text-lg md:text-2xl mt-2 text-gray-300">
             I work in Tech and feed stray dogs
           </p>
-          <p className="text-base md:text-lg mt-4 text-gray-400 max-w-xl">
+          <p className="text-sm md:text-lg mt-2 text-gray-400 max-w-xl">
             Been through the chaos of college life, Now here to fix yours, clear your career doubts, and drop the roadmaps you actually need.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full max-w-sm">
+          <div className="flex flex-col gap-2 mt-4 w-full max-w-sm sm:flex-row sm:gap-4">
             <button
               onClick={() => handleProtectedAction('donate')}
-              className="flex-1 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+              className="flex-1 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-bold text-sm rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 w-full"
             >
               <FontAwesomeIcon icon={faPaw} />
               <span>Donate for Stray Dogs</span>
             </button>
             <button
               onClick={() => handleProtectedAction('chat')}
-              className="flex-1 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+              className="flex-1 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold text-sm rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 w-full"
             >
               <FontAwesomeIcon icon={faComments} />
               <span>Chat with Me</span>
             </button>
+          </div>
+          
+          {/* Modified block for the footer content */}
+          <div className="w-full text-center mt-6 text-gray-400 text-sm md:text-left">
+            <p className="mb-2">Built by Manas Jain</p>
+            <div className="flex justify-center md:justify-start space-x-6">
+              <a
+                href="https://www.instagram.com/manasjaiinn"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-pink-500 transition-colors duration-200"
+                aria-label="Manas Jain's Instagram"
+              >
+                <FontAwesomeIcon icon={faInstagram} size="xl" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/manas110"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-blue-600 transition-colors duration-200"
+                aria-label="Manas Jain's LinkedIn"
+              >
+                <FontAwesomeIcon icon={faLinkedin} size="xl" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -154,31 +178,6 @@ const MainScreen = () => {
         isOpen={isChatOpen}
         onClose={() => setIsChatOpen(false)}
       />
-
-      {/* Fixed footer */}
-      <footer className="w-full text-center py-4 px-2 text-gray-400 text-sm bg-slate-900 bg-opacity-70 fixed bottom-0 left-0 right-0 z-20">
-        <p className="mb-2">Built by Manas Jain</p>
-        <div className="flex justify-center space-x-6">
-          <a
-            href="https://www.instagram.com/manasjaiinn"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-pink-500 transition-colors duration-200"
-            aria-label="Manas Jain's Instagram"
-          >
-            <FontAwesomeIcon icon={faInstagram} size="2x" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/manas110"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-blue-600 transition-colors duration-200"
-            aria-label="Manas Jain's LinkedIn"
-          >
-            <FontAwesomeIcon icon={faLinkedin} size="2x" />
-          </a>
-        </div>
-      </footer>
     </div>
   );
 };
