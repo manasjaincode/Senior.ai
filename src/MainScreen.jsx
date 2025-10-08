@@ -126,7 +126,7 @@ const MainScreen = () => {
           
           {/* Modified block for the footer content */}
           <div className="w-full text-center mt-6 text-gray-400 text-sm md:text-left">
-            <p className="mb-2">Built by Manas Jain</p>
+            <p className="mb-2">Built by Manas Jain, Mehak Chugh, Malhar Joshi</p>
             <div className="flex justify-center md:justify-start space-x-6">
               <a
                 href="https://www.instagram.com/manasjaiinn"
