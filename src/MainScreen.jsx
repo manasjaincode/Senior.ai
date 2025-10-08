@@ -97,7 +97,7 @@ const MainScreen = () => {
 
         <div className="flex flex-col items-center md:items-start text-white max-w-2xl mt-4 md:mt-0">
           <h1 className="text-3xl md:text-6xl font-bold leading-tight">
-            Hey, I am <span className="text-blue-400">Aashima</span><br />
+            Hey, I am <span className="text-blue-400">Techify</span><br />
             your Ai College Senior
           </h1>
           <p className="text-lg md:text-2xl mt-2 text-gray-300">
