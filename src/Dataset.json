@@ -1,0 +1,234 @@
+{
+  "ai_senior_profile": {
+    "name": "Aaradhya Singh",
+    "gender": "female",
+    "role": "AI Senior Mentor",
+    "batch": "2023",
+    "department": "Computer Science and Engineering",
+    "personality_traits": ["helpful", "realistic", "fun", "experienced", "approachable"],
+    "intro_message": "Hey! Main Aaradhya hoon — tumhari AI senior from Medicaps University. Main yahan se CSE ki hoon, aur college ka har system, fest, placement rule, aur inhouse training personally experience kiya hai. Feel free to ask anything — placements se lekar fest ke outfit tak!"
+  },
+
+  "college_overview": {
+    "name": "Medicaps University",
+    "city": "Indore",
+    "state": "Madhya Pradesh",
+    "type": "Private University",
+    "established": "2000",
+    "campus_life_summary": "Medicaps University is a blend of learning, fun, culture, and career growth. The environment is competitive yet supportive, offering plenty of opportunities in academics, placements, and extracurriculars."
+  },
+
+  "academic_info": {
+    "first_year": {
+      "description": "In the first year, all engineering branches have common subjects that build a science and mathematics foundation.",
+      "common_subjects": [
+        "Engineering Physics",
+        "Engineering Chemistry",
+        "Mathematics I & II",
+        "Basic Electrical Engineering",
+        "Engineering Mechanics",
+        "Communication Skills",
+        "Workshop Practice"
+      ],
+      "workshops": [
+        "Welding",
+        "Carpentry",
+        "Fitting",
+        "Sheet Metal Work",
+        "Black Smithy"
+      ],
+      "remarks": "Workshop is compulsory for all and gives a hands-on taste of real engineering work."
+    },
+    "attendance_policy": {
+      "minimum_percentage_required": "75%",
+      "remarks": "Students below 75% attendance may lose eligibility for internals unless special permission is granted."
+    }
+  },
+
+  "placement_info": {
+    "placement_season": {
+      "starts_in": "7th Semester",
+      "duration": "Continues till 8th semester",
+      "conducted_by": "Training and Placement Cell (T&P)"
+    },
+    "salary_slabs": [
+      {
+        "range": "3 - 7 LPA",
+        "category": "Standard Tier Companies",
+        "examples": ["TCS", "Cognizant", "Accenture", "Infosys"]
+      },
+      {
+        "range": "7 - 12 LPA",
+        "category": "Mid Tier Companies",
+        "examples": ["ZS Associates", "Mindtree", "Capgemini Elite"]
+      },
+      {
+        "range": "12+ LPA",
+        "category": "Dream Tier / Super Dream Companies",
+        "examples": ["Amazon", "SAP Labs", "Cogoport", "HFT startups"]
+      }
+    ],
+    "eligibility_rules": {
+      "placement_policy": "Once placed in a certain slab, you can only apply for companies in higher slabs.",
+      "example": "If you get a 6 LPA offer, you can only sit for 7+ LPA drives.",
+      "email_policy": "If unable to attend a placement drive after registering via POD.ai, mail at top@medicaps.ac.in with a valid reason.",
+      "off_campus_rule": "If you are placed off-campus, you are still eligible for on-campus drives as per university policy."
+    },
+    "platforms_used": [
+      "POD.ai",
+      "Superset",
+      "Microsoft Teams"
+    ],
+    "remark": "Placement activities start around July–August of the final year. Resume, communication, and aptitude prep are key."
+  },
+
+  "internship_info": {
+    "duration": "3rd Year Summer Vacation",
+    "types": [
+      {
+        "category": "Out-house Internship",
+        "description": "Students can pursue internships outside campus in recognized firms.",
+        "eligibility_criteria": [
+          "Company valuation above ₹10 Crore",
+          "Company must be MCA approved"
+        ]
+      },
+      {
+        "category": "In-house Internship",
+        "description": "University offers several inhouse training and certification programs.",
+        "popular_trainings": [
+          "CCNA Networking",
+          "AWS Cloud Practitioner",
+          "Python and AI Development",
+          "Android App Development",
+          "IoT Bootcamp",
+          "Machine Learning using TensorFlow"
+        ]
+      }
+    ],
+    "credits_awarded": "Yes, internships carry academic credits.",
+    "note": "Inhouse internships are best for certifications, while outhouse ones add stronger resume value."
+  },
+
+  "student_life": {
+    "clubs_and_societies": [
+      {
+        "name": "Google Developer Student Club (GDSC)",
+        "focus": "Technology, coding, and community-driven hackathons"
+      },
+      {
+        "name": "AWS Cloud Club",
+        "focus": "Learning and building cloud solutions with AWS tools"
+      },
+      {
+        "name": "ACM Student Chapter",
+        "focus": "Research, coding contests, and academic excellence"
+      },
+      {
+        "name": "IEEE Club",
+        "focus": "Electronics, innovations, and paper presentations"
+      },
+      {
+        "name": "Maths Club",
+        "focus": "Problem-solving, puzzles, and logic-based events"
+      },
+      {
+        "name": "Science Club",
+        "focus": "Projects, experiments, and inter-college exhibitions"
+      },
+      {
+        "name": "NSS (National Service Scheme)",
+        "focus": "Social service, rural awareness, and volunteering"
+      },
+      {
+        "name": "Cultural Club",
+        "focus": "Dance, music, drama, and event management for fests"
+      },
+      {
+        "name": "E-Cell",
+        "focus": "Startup ideation, innovation, and entrepreneurship"
+      },
+      {
+        "name": "Sports Committee",
+        "focus": "Cricket, football, basketball, athletics, and annual sports events"
+      }
+    ],
+    "regular_activities": {
+      "flashmobs": "Flashmobs are performed before major fests like Moonstone to create hype and excitement on campus.",
+      "open_mic_events": "Students perform poetry, standup comedy, and music at informal evening gatherings.",
+      "hackathons": "Inter-departmental and open hackathons conducted by GDSC and ACM clubs."
+    },
+    "annual_events": [
+      {
+        "name": "Moonstone",
+        "type": "Annual Cultural Fest",
+        "duration": "3 Days",
+        "description": "The biggest fest of Medicaps, filled with performances, competitions, and celebrity nights.",
+        "themes_by_day": {
+          "day_1": "Western Wear",
+          "day_2": "Casual Wear",
+          "day_3": "Traditional Wear"
+        },
+        "past_highlights": [
+          {
+            "year": "2022",
+            "celebrity_guest": "Darshan Raval",
+            "highlight": "Darshan Raval performed live on Day 3 — a night remembered by the entire campus."
+          }
+        ],
+        "vibe": "Lively, colorful, and full of music, lights, and laughter. One of the best memories for every Medicaps student."
+      },
+      {
+        "name": "Abhivyakti",
+        "type": "Cultural & Art Fest",
+        "time_of_year": "February-March"
+      },
+      {
+        "name": "Techno-Sapiens",
+        "type": "Technical Fest",
+        "time_of_year": "October"
+      }
+    ],
+    "remarks": "Clubs and fests together make the Medicaps experience unforgettable. From flashmobs to hackathons, the campus stays alive year-round."
+  },
+
+  "communication_channels": {
+    "official_email_for_placement": "top@medicaps.ac.in",
+    "official_website": "https://medicaps.ac.in",
+    "placement_portal": "https://pod.ai",
+    "student_portal": "https://student.medicaps.ac.in"
+  },
+
+  "faqs": [
+    {
+      "question": "When do companies start visiting for placements?",
+      "answer": "Usually from the start of 7th semester, around July or August."
+    },
+    {
+      "question": "Can I apply for a company if I already have a 5 LPA offer?",
+      "answer": "Yes, but only for companies offering packages higher than your current one."
+    },
+    {
+      "question": "What if I can’t attend the placement drive after registration?",
+      "answer": "Send an email to top@medicaps.ac.in mentioning your reason — otherwise it’s considered a 'no-show and the Placement committie have all rights to Debar you as you sign the Placement Policy'."
+    },
+    {
+      "question": "Are internships compulsory?",
+      "answer": "Yes, every student must complete an internship during the 3rd-year summer break."
+    },
+    {
+      "question": "What’s the biggest fest of Medicaps University?",
+      "answer": "Moonstone — a 3-day cultural fest with music, themes, and celebrity performances."
+    },
+    {
+      "question": "Which clubs are most active?",
+      "answer": "GDSC, ACM, AWS Cloud Club, and Cultural Club are among the most vibrant student communities."
+    }
+  ],
+
+  "meta_data": {
+    "last_updated": "2025-10-29",
+    "verified_by": "AI Knowledge Team",
+    "source": "Medicaps University Students, Alumni, and Official Website"
+  }
+}

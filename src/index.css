@@ -178,6 +178,14 @@
 .typing-indicator span:nth-child(3) {
   animation-delay: 0.4s;
 }
+/* Custom CSS to hide the scrollbar for a cleaner MacOS look */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
 
 @keyframes typing {
   0%, 80%, 100% {
