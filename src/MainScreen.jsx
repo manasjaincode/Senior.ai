@@ -6,7 +6,7 @@ import { Sparkles, Brain, TrendingUp, Users, Menu, X, MessageSquare, Send, Searc
 // Marquee/Scrolling List Component
 const ScrollingList = ({ content, speed = 'slow', isReverse = false }) => {
   const scrollKeyframes = isReverse ? 'scroll-up-reverse' : 'scroll-up';
-  
+
   // Duplicate the content to ensure continuous scrolling
   const duplicatedContent = [...content, ...content];
 
@@ -25,8 +25,8 @@ const ScrollingList = ({ content, speed = 'slow', isReverse = false }) => {
           100% { transform: translateY(0%); }
         }
       `}</style>
-      
-      <div 
+
+      <div
         className={`absolute top-0 left-0 w-full`}
         style={{
           animation: `${scrollKeyframes} ${speed === 'slow' ? '40s' : '25s'} linear infinite`,
@@ -47,7 +47,7 @@ function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedChat, setSelectedChat] = useState('Welcome');
   const [message, setMessage] = useState('');
-const { messages, sendMessage, isLoading } = useGeminiChat();
+  const { messages, sendMessage, isLoading } = useGeminiChat();
 
   const chatList = [
     { name: 'Welcome', count: 48, color: 'bg-purple-500' },
@@ -115,27 +115,27 @@ const { messages, sendMessage, isLoading } = useGeminiChat();
 
           {/* New Auto-Scrolling Content Divs */}
           <div className="flex-1 overflow-hidden p-3 space-y-4">
-            
+
             {/* Div 1: On-Campus Updates (News) */}
             <div className="h-1/2 min-h-[40%] flex flex-col p-2 bg-[#141414] rounded-xl border border-gray-700 shadow-inner">
-                <h3 className="flex items-center gap-2 text-sm font-semibold text-blue-400 mb-2 border-b border-gray-800 pb-1">
-                    <Zap className="w-4 h-4" />
-                    On-Campus Updates
-                </h3>
-                <div className="flex-1 min-h-0"> {/* Wrapper to give the inner list a specific height for overflow:hidden */}
-                    <ScrollingList content={campusNews} speed="slow" isReverse={false} />
-                </div>
+              <h3 className="flex items-center gap-2 text-sm font-semibold text-blue-400 mb-2 border-b border-gray-800 pb-1">
+                <Zap className="w-4 h-4" />
+                On-Campus Updates
+              </h3>
+              <div className="flex-1 min-h-0"> {/* Wrapper to give the inner list a specific height for overflow:hidden */}
+                <ScrollingList content={campusNews} speed="slow" isReverse={false} />
+              </div>
             </div>
 
             {/* Div 2: College News/Tips */}
             <div className="h-1/2 min-h-[40%] flex flex-col p-2 bg-[#141414] rounded-xl border border-gray-700 shadow-inner">
-                <h3 className="flex items-center gap-2 text-sm font-semibold text-purple-400 mb-2 border-b border-gray-800 pb-1">
-                    <MessageSquare className="w-4 h-4" />
-                    Clg Tips & Insights
-                </h3>
-                <div className="flex-1 min-h-0">
-                    <ScrollingList content={collegeTips} speed="medium" isReverse={true} /> {/* Different speed/direction for variety */}
-                </div>
+              <h3 className="flex items-center gap-2 text-sm font-semibold text-purple-400 mb-2 border-b border-gray-800 pb-1">
+                <MessageSquare className="w-4 h-4" />
+                Clg Tips & Insights
+              </h3>
+              <div className="flex-1 min-h-0">
+                <ScrollingList content={collegeTips} speed="medium" isReverse={true} /> {/* Different speed/direction for variety */}
+              </div>
             </div>
           </div>
           {/* End of New Auto-Scrolling Content Divs */}
@@ -176,148 +176,146 @@ const { messages, sendMessage, isLoading } = useGeminiChat();
 
         {/* Main Chat Area - UNCHANGED */}
         <div className="flex-1 flex flex-col h-screen bg-[#1c1c1c] text-white">
-      
-      {/* --- Chat Header (MacOS Style) --- */}
-      <div className="h-16 border-b border-gray-800 flex items-center justify-between px-6 bg-[#181818] z-10 sticky top-0">
-        <div className="flex items-center gap-3">
-          {/* MacOS Window Traffic Lights */}
-          <div className="flex gap-2">
-            <div className="w-3 h-3 bg-red-500 rounded-full" title="Close"></div>
-            <div className="w-3 h-3 bg-yellow-500 rounded-full" title="Minimize"></div>
-            <div className="w-3 h-3 bg-green-500 rounded-full" title="Maximize"></div>
-          </div>
-          
-          <h2 className="font-semibold text-lg text-gray-200 ml-4">{selectedChat}</h2>
-          {/* Your Star Icon component (uncomment when imported) */}
-          {/* <Star className="w-5 h-5 text-gray-500 hover:text-yellow-500 cursor-pointer transition-colors" /> */}
-        </div>
-        <div className="flex items-center gap-3">
-          {/* Your Archive/Settings Icon components (uncomment when imported) */}
-          {/* <button className="p-2 hover:bg-[#1f1f1f] rounded-lg transition-colors">
+
+          {/* --- Chat Header (MacOS Style) --- */}
+          <div className="h-16 border-b border-gray-800 flex items-center justify-between px-6 bg-[#181818] z-10 sticky top-0">
+            <div className="flex items-center gap-3">
+              {/* MacOS Window Traffic Lights */}
+              <div className="flex gap-2">
+                <div className="w-3 h-3 bg-red-500 rounded-full" title="Close"></div>
+                <div className="w-3 h-3 bg-yellow-500 rounded-full" title="Minimize"></div>
+                <div className="w-3 h-3 bg-green-500 rounded-full" title="Maximize"></div>
+              </div>
+
+              <h2 className="font-semibold text-lg text-gray-200 ml-4">{selectedChat}</h2>
+              {/* Your Star Icon component (uncomment when imported) */}
+              {/* <Star className="w-5 h-5 text-gray-500 hover:text-yellow-500 cursor-pointer transition-colors" /> */}
+            </div>
+            <div className="flex items-center gap-3">
+              {/* Your Archive/Settings Icon components (uncomment when imported) */}
+              {/* <button className="p-2 hover:bg-[#1f1f1f] rounded-lg transition-colors">
             <Archive className="w-5 h-5 text-gray-400" />
           </button>
           <button className="p-2 hover:bg-[#1f1f1f] rounded-lg transition-colors">
             <Settings className="w-5 h-5 text-gray-400" />
           </button> */}
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-colors shadow-lg">
-            Share
-          </button>
-        </div>
-      </div>
+              <button className="px-4 py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-colors shadow-lg">
+                Share
+              </button>
+            </div>
+          </div>
 
-      {/* --- Chat Content Area (Scrollable with Hidden Bar) --- */}
-      <div className="flex-1 overflow-y-auto p-6 hide-scrollbar">
-        <div className="max-w-4xl mx-auto">
-          
-          {/* Welcome Section (Only shown when no messages are present) */}
-          {messages.length === 0 && (
-             <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-8">
-                {/* Your Brain Icon Component here */}
-                {/* <div className="w-32 h-32 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center animate-float">
+          {/* --- Chat Content Area (Scrollable with Hidden Bar) --- */}
+          <div className="flex-1 overflow-y-auto p-6 hide-scrollbar">
+            <div className="max-w-4xl mx-auto">
+
+              {/* Welcome Section (Only shown when no messages are present) */}
+              {messages.length === 0 && (
+                <div className="max-w-4xl mx-auto">
+                  <div className="text-center mb-8">
+                    {/* Your Brain Icon Component here */}
+                    {/* <div className="w-32 h-32 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center animate-float">
                   <Brain className="w-16 h-16" />
                 </div> */}
-                <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                  Welcome to AI College Senior
-                </h1>
-                <p className="text-gray-400 text-lg">
-                  Your personal mentor for navigating college life successfully
-                </p>
-              </div>
-
-              {/* Grid cards content */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {/* Card 1 */}
-                <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 hover:border-blue-500/40 transition-all hover:scale-[1.02] cursor-pointer">
-                  {/* <Sparkles className="w-8 h-8 text-blue-400 mb-3" /> */}
-                  <h3 className="font-semibold mb-2">Smart Strategies</h3>
-                  <p className="text-sm text-gray-400">Get personalized advice for academic success</p>
-                </div>
-                {/* Card 2 */}
-                <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/20 hover:border-purple-500/40 transition-all hover:scale-[1.02] cursor-pointer">
-                  {/* <TrendingUp className="w-8 h-8 text-purple-400 mb-3" /> */}
-                  <h3 className="font-semibold mb-2">Career Growth</h3>
-                  <p className="text-sm text-gray-400">Build skills that matter in the real world</p>
-                </div>
-                {/* Card 3 */}
-                <div className="p-6 rounded-2xl bg-gradient-to-br from-pink-500/10 to-pink-600/5 border border-pink-500/20 hover:border-pink-500/40 transition-all hover:scale-[1.02] cursor-pointer">
-                  {/* <Users className="w-8 h-8 text-pink-400 mb-3" /> */}
-                  <h3 className="font-semibold mb-2">Community Support</h3>
-                  <p className="text-sm text-gray-400">Learn from experiences of successful seniors</p>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* --- Message Bubbles (Social Media / iMessage Style) --- */}
-          <div className="mt-10 max-w-2xl mx-auto space-y-4">
-            {messages.map((msg, i) => (
-              <div
-                key={i}
-                className={`flex items-end gap-3 ${
-                  msg.role === "user" ? "justify-end" : "justify-start"
-                }`}
-              >
-                {/* AI Profile Pic as Text (Show on left) */}
-                {msg.role !== "user" && (
-                  <div
-                    className="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs font-bold shadow-md"
-                  >
-                    CS
+                    <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                      Welcome to AI College Senior
+                    </h1>
+                    <p className="text-gray-400 text-lg">
+                      Your personal mentor for navigating college life successfully
+                    </p>
                   </div>
-                )}
 
-                {/* Message Bubble */}
-                <div
-                  className={`max-w-[75%] p-3 shadow-xl transition-all text-sm 
-                    ${
-                      msg.role === "user"
-                        // User Bubble: Blue background, white text, slightly different corner
-                        ? "bg-blue-500 text-white rounded-t-xl rounded-l-xl rounded-br-md"
-                        // AI Bubble: Soft gray background with blur, dark text, slightly different corner
-                        : "bg-gray-700/50 text-gray-200 rounded-t-xl rounded-r-xl rounded-bl-md backdrop-blur-md"
-                    }
+                  {/* Grid cards content */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {/* Card 1 */}
+                    <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 hover:border-blue-500/40 transition-all hover:scale-[1.02] cursor-pointer">
+                      {/* <Sparkles className="w-8 h-8 text-blue-400 mb-3" /> */}
+                      <h3 className="font-semibold mb-2">Smart Strategies</h3>
+                      <p className="text-sm text-gray-400">Get personalized advice for academic success</p>
+                    </div>
+                    {/* Card 2 */}
+                    <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/20 hover:border-purple-500/40 transition-all hover:scale-[1.02] cursor-pointer">
+                      {/* <TrendingUp className="w-8 h-8 text-purple-400 mb-3" /> */}
+                      <h3 className="font-semibold mb-2">Career Growth</h3>
+                      <p className="text-sm text-gray-400">Build skills that matter in the real world</p>
+                    </div>
+                    {/* Card 3 */}
+                    <div className="p-6 rounded-2xl bg-gradient-to-br from-pink-500/10 to-pink-600/5 border border-pink-500/20 hover:border-pink-500/40 transition-all hover:scale-[1.02] cursor-pointer">
+                      {/* <Users className="w-8 h-8 text-pink-400 mb-3" /> */}
+                      <h3 className="font-semibold mb-2">Community Support</h3>
+                      <p className="text-sm text-gray-400">Learn from experiences of successful seniors</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* --- Message Bubbles (Social Media / iMessage Style) --- */}
+              <div className="mt-10 max-w-2xl mx-auto space-y-4">
+                {messages.map((msg, i) => (
+                  <div
+                    key={i}
+                    className={`flex items-end gap-3 ${msg.role === "user" ? "justify-end" : "justify-start"
+                      }`}
+                  >
+                    {/* AI Profile Pic as Text (Show on left) */}
+                    {msg.role !== "user" && (
+                      <div
+                        className="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs font-bold shadow-md"
+                      >
+                        CS
+                      </div>
+                    )}
+
+                    {/* Message Bubble */}
+                    <div
+                      className={`max-w-[75%] p-3 shadow-xl transition-all text-sm 
+                    ${msg.role === "user"
+                          // User Bubble: Blue background, white text, slightly different corner
+                          ? "bg-blue-500 text-white rounded-t-xl rounded-l-xl rounded-br-md"
+                          // AI Bubble: Soft gray background with blur, dark text, slightly different corner
+                          : "bg-gray-700/50 text-gray-200 rounded-t-xl rounded-r-xl rounded-bl-md backdrop-blur-md"
+                        }
                   `}
-                >
-                  <p className="whitespace-pre-wrap">{msg.text}</p>
-                </div>
+                    >
+                      <p className="whitespace-pre-wrap">{msg.text}</p>
+                    </div>
 
-                {/* User Profile Pic as Text (Show on right) */}
-                {msg.role === "user" && (
-                  <div
-                    className="w-8 h-8 rounded-full bg-gray-600 text-white flex items-center justify-center text-xs font-bold shadow-md"
-                  >
-                    Jr
+                    {/* User Profile Pic as Text (Show on right) */}
+                    {msg.role === "user" && (
+                      <div
+                        className="w-8 h-8 rounded-full bg-gray-600 text-white flex items-center justify-center text-xs font-bold shadow-md"
+                      >
+                        Jr
+                      </div>
+                    )}
+                  </div>
+                ))}
+
+                {/* --- Typing Indicator (Animated) --- */}
+                {isLoading && (
+                  <div className="flex items-end gap-3 justify-start">
+                    {/* AI's "CS" circle for the typing indicator */}
+                    <div
+                      className="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs font-bold shadow-md"
+                    >
+                      CS
+                    </div>
+                    <div className="bg-gray-700/50 p-3 rounded-t-xl rounded-r-xl rounded-bl-md backdrop-blur-md">
+                      <div className="flex items-center space-x-1">
+                        <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></span>
+                        <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></span>
+                        <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></span>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
-            ))}
 
-            {/* --- Typing Indicator (Animated) --- */}
-            {isLoading && (
-              <div className="flex items-end gap-3 justify-start">
-                {/* AI's "CS" circle for the typing indicator */}
-                <div
-                  className="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs font-bold shadow-md"
-                >
-                  CS
-                </div>
-                <div className="bg-gray-700/50 p-3 rounded-t-xl rounded-r-xl rounded-bl-md backdrop-blur-md">
-                  <div className="flex items-center space-x-1">
-                    <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></span>
-                    <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></span>
-                    <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></span>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-      
-     
-      
-     
 
-          </div>      </div>
+
+
+
+            </div>      </div>
 
           {/* Input Area */}
           <div className="border-t border-gray-800 p-4">
@@ -333,20 +331,19 @@ const { messages, sendMessage, isLoading } = useGeminiChat();
                   placeholder="Type '/' for commands..."
                   className="flex-1 bg-transparent outline-none text-white placeholder-gray-500"
                 />
-               <button
-  onClick={() => {
-    sendMessage(message);
-    setMessage("");
-  }}
-  disabled={isLoading}
-  className={`p-2 rounded-lg transition-colors ${
-    isLoading
-      ? "bg-gray-700 cursor-not-allowed"
-      : "bg-blue-600 hover:bg-blue-700"
-  }`}
->
-  <Send className="w-5 h-5" />
-</button>
+                <button
+                  onClick={() => {
+                    sendMessage(message);
+                    setMessage("");
+                  }}
+                  disabled={isLoading}
+                  className={`p-2 rounded-lg transition-colors ${isLoading
+                      ? "bg-gray-700 cursor-not-allowed"
+                      : "bg-blue-600 hover:bg-blue-700"
+                    }`}
+                >
+                  <Send className="w-5 h-5" />
+                </button>
 
               </div>
               <p className="text-xs text-gray-500 mt-2 text-center">
@@ -487,7 +484,7 @@ const { messages, sendMessage, isLoading } = useGeminiChat();
                   <p className="text-3xl font-bold text-white">200+</p>
                   <p className="text-sm text-gray-500">Students Helped</p>
                 </div>
-              
+
                 <div>
                   <p className="text-3xl font-bold text-white">24/7</p>
                   <p className="text-sm text-gray-500">Available</p>

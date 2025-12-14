@@ -4,9 +4,9 @@ export default function useGeminiChat() {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const GEMINI_API_KEY = "AIzaSyC23gQ5pyqJ08kI1FiBiqrKWGXS40CPsZA"; // ⚠️ Replace later with .env
+  const GEMINI_API_KEY = "AIzaSyAiMwJW6HzX3NGw7WDuB3kbkc0Ebp5Kykc"; 
 
-  // 🧠 Predefined context about college, culture, placements & vibe
+
   const collegeContext = `
 You are chatting as a friendly, career-savvy AI who understands the college ecosystem at Medicaps University.
 
